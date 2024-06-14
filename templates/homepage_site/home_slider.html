@@ -252,8 +252,12 @@
     transition-delay: 0.2s;
   }
   section .carousel .card.c3 {
-    transform: translateX(-50%) rotate(0deg);
+    transform: translateX(-50%) rotate(20deg);
     transition-delay: 0.4s;
+  }
+  section .carousel .card.c4 {
+    transform: translateX(-50%) rotate(0deg);
+    transition-delay: 0.6s;
   }
   section .carousel .card.active {
     left: 50%;
@@ -268,6 +272,8 @@
     transform: translateX(-50%) rotate(0deg);
     transition-delay: 0s;
   }
+
+  
   </style>
   
 
@@ -275,16 +281,19 @@
     <div id="app">
         <section>
             <div class="text">
+             
                 <h2>
-                    Special Offer
+                    AgriKart Produce 
                 </h2>
                 <p>
-                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus temporibus quos tempora deserunt harum placeat illum,
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt reiciendis, at quo voluptatem libero perferendis cumque. Eos eaque consectetur perferendis cum hic perspiciatis quae culpa, odit voluptates, dolore quis facere!
+                  Welcome to our agricultural online shop! Discover quality seeds, fresh fruits, flavorful vegetables, and essential tools. 
+                  Embrace sustainability with organic options and eco-friendly tools. Enjoy convenient shopping and personalized support. Start growing with us at AgriKart
+              
                 </p>
   
                 </a>
-            </div>
+            </div> 
+
             <div class="carousel">
                 <div class="card c1">
                     <img src="{% static 'media/farmers-market-vegetables-today-tease-150805.jpg' %}" alt="" />
@@ -295,6 +304,9 @@
                 <div class="card c3">
                     <img src="{% static 'media/rice_sack2.png' %}" alt="" />
                 </div>
+                <div class="card c4">
+                  <img src="{% static 'media/garden_tools.jpg' %}" alt="" />
+              </div>
             </div>
         </section>
   
@@ -314,6 +326,7 @@
       let c1 = document.querySelector('.c1')
       let c2 = document.querySelector('.c2')
       let c3 = document.querySelector('.c3')
+      let c4 = document.querySelector('.c4')
       let mouse = document.querySelector('.mouse')
       let status = 0
       let moving = false
@@ -325,26 +338,33 @@
               changeCard(status)
           }
       }
+
       function changeCard(status) {
-          if (status % 3 === 0) {
-              cards.forEach((card) => {
-                  card.classList.remove('move')
-                  card.classList.remove('stage')
-                  card.classList.add('active')
-              })
-              hideCard()
-          }
-          if (status % 3 === 1) {
-              c3.classList.add('move')
-              c2.classList.add('stage')
-              hideCard(c3)
-          }
-          if (status % 3 === 2) {
-              c2.classList.add('move')
-              c1.classList.add('stage')
-              hideCard(c2)
-          }
-      }
+        if (status % 4 === 0) {
+            cards.forEach((card) => {
+                card.classList.remove('move');
+                card.classList.remove('stage');
+                card.classList.add('active');
+            });
+            hideCard();
+        }
+        if (status % 4 === 1) {
+            c4.classList.add('move');
+            c3.classList.add('stage');
+            hideCard(c4);
+        }
+        if (status % 4 === 2) {
+            c3.classList.add('move');
+            c2.classList.add('stage');
+            hideCard(c3);
+        }
+        if (status % 4 === 3) {
+            c2.classList.add('move');
+            c1.classList.add('stage');
+            hideCard(c2);
+        }
+    }
+
       function hideCard(el) {
           if (el) {
               setTimeout(() => {
